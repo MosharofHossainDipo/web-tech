@@ -23,18 +23,28 @@
                     <td><input type="tel" id="phone" name="phone"></td>
                 </tr>
                 <tr>
-                    <td><label for="location">Location:</label></td>
-                    <td><input type="text" id="location" name="location"></td>
-                </tr>
-                <tr>
-                    <td><label for="service_type">Service Needed:</label></td>
+                    <td><label for="location">Business Area:</label></td>
                     <td>
-                        <select id="service_type" name="service_type">
-                            <option value="qurbani">Qurbani Butchering</option>
-                            <option value="general">General Butchering</option>
+                        <select id="location" name="Business_area" required>
+                            <option value="Dhaka">Dhaka</option>
+                            <option value="Khulna">Khulna</option>
+                            <option value="Chittagong">Chittagong</option>
+                            <option value="Rajshahi">Rajshahi</option>
+                            <option value="Sylhet">Sylhet</option>
+                            <option value="Barisal">Barisal</option>
                         </select>
                     </td>
                 </tr>
+                <tr>
+    <td><label>Service Needed:</label></td>
+    <td>
+        <input type="radio" id="qurbani" name="service_type" value="qurbani">
+        <label for="qurbani">Qurbani Butchering</label>
+        <input type="radio" id="general" name="service_type" value="general">
+        <label for="general">General Butchering</label>
+    </td>
+</tr>
+
                 <tr>
                     <td><label for="dob">Date of Birth:</label></td>
                     <td><input type="date" id="dob" name="dob"></td>
