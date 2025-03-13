@@ -6,7 +6,7 @@
 <body>
     <h2>Customer Registration</h2>
     
-        <form action="customer_register.php" method="POST">
+        <form action="Customer_Registration.php" method="POST">
         <fieldset>
         <legend>Customer Information</legend>
             <table border="0" cellpadding="10" cellspacing="0">
