@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Customer Registration</title>
+    <title>cenCustomer Registration</title>
+    <link rel="stylesheet" type="text/css" href="../css/styles.css">
 </head>
 <body>
-    <h2>Customer Registration</h2>
+
+    <h2><center>Customer Registration</center></h2>
     
         <form action="Customer_Registration.php" method="POST">
+        
         <fieldset>
         <legend>Customer Information</legend>
+        <img src="customer.png"  class="fieldset-image">
             <table border="0" cellpadding="10" cellspacing="0">
                 <tr>
                     <td><label for="full_name">Full Name:</label></td>
@@ -20,7 +24,7 @@
                 </tr>
                 <tr>
                     <td><label for="phone">Phone Number:</label></td>
-                    <td><input type="tel" id="phone" name="phone"></td>
+                    <td><input type="tel" id="phone" name="phone" placeholder="+8801XXXXXXXXX" required></td>
                 </tr>
                 <tr>
                     <td><label for="location">Business Area:</label></td>
@@ -35,6 +39,19 @@
                         </select>
                     </td>
                 </tr>
+                
+                <tr>
+                    <td><label for="dob">Date of Birth:</label></td>
+                    <td><input type="date" id="dob" name="dob"></td>
+                </tr>
+                <tr>
+                <td><label for="profile_pic">Upload Profile Picture:</label></td>
+                <td><input type="file" id="profile_pic" name="profile_pic" accept="image/*"></td>
+            </tr>
+            <tr>
+                    <td><label for="butchering_time">Preferred Butchering Time:</label></td>
+                    <td><input type="time" id="butchering_time" name="butchering_time"></td>
+                </tr>
                 <tr>
     <td><label>Service Needed:</label></td>
     <td>
@@ -44,15 +61,6 @@
         <label for="general">General Butchering</label>
     </td>
 </tr>
-
-                <tr>
-                    <td><label for="dob">Date of Birth:</label></td>
-                    <td><input type="date" id="dob" name="dob"></td>
-                </tr>
-                <tr>
-                    <td><label for="butchering_time">Preferred Butchering Time:</label></td>
-                    <td><input type="time" id="butchering_time" name="butchering_time"></td>
-                </tr>
                 <tr>
                     <td><label for="password">Password:</label></td>
                     <td><input type="password" id="password" name="password" required></td>
