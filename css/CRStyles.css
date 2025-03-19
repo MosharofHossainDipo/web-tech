@@ -1,14 +1,12 @@
-/* Universal Selector */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body Styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #e3f2fd; /* Light blue background */
+    background-color: #e3f2fd;
     padding: 20px;
 }
 
@@ -22,11 +20,10 @@ body {
     z-index: -1;
 }
 
-/* Form Container */
 form {
     position: relative;
-    z-index: 1; /* Ensures the form stays above the background */
-    background: rgba(176,224,230, 0.9); /* Adds slight transparency */
+    z-index: 1;
+    background: rgba(176, 224, 230, 0.9);
     width: 600px;
     padding: 25px;
     margin: 50px auto;
@@ -34,11 +31,10 @@ form {
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
-/* Fieldset Styling */
 fieldset {
     position: relative;
-    background: url('customer.png') no-repeat center center, #ffffff; /* background image and color */
-    background-size: 300px 200px; /* Set width & height manually */
+    background: url('customer.png') no-repeat center center, #ffffff;
+    background-size: 300px 200px;
     padding: 20px;
     border: 10px solid #42a5f5;
     border-radius: 8px;
@@ -47,39 +43,32 @@ fieldset {
     min-height: 400px;
 }
 
+h2, label, legend {
+    font-weight: bold;
+}
 
-
-/* Legend Styling */
 legend {
     font-size: 18px;
-    font-weight: bold;
     color: #ffffff;
     background: #30e171;
     padding: 5px 10px;
     border-radius: 5px;
 }
 
-/* Input Fields */
-input, select {
-    background: #a4daddcc; /* Light transparency */
+input, select, textarea {
+    background: #a4daddcc;
     border: 1px solid #999;
     border-radius: 5px;
     padding: 10px;
     font-size: 16px;
+    width: 100%;
+    margin: 5px 0;
 }
-label {
-    font-weight: bold;
-    color: #284e9b; /* White text for visibility */
-}
-/* Focus Effect */
 
-
-/* Button Styling */
 input[type="submit"], input[type="reset"] {
     width: 48%;
     padding: 12px;
     margin-top: 10px;
-    background-color: #42a5f5;
     color: white;
     border: none;
     border-radius: 5px;
@@ -87,37 +76,29 @@ input[type="submit"], input[type="reset"] {
     cursor: pointer;
 }
 
-input[type="reset"] {
-    background-color: #e41b1b;
-}
+input[type="submit"] { background-color: #15181b; }
+input[type="reset"] { background-color: #e41b1b; }
 
-input[type="submit"]{
-    background-color: #15181b;
-}
-
-
-/* Aligning the form */
 table {
     width: 100%;
 }
 
-/* Making Form More Lengthy */
 td {
     padding: 5px;
 }
 
-/* Header */
 h2 {
     text-align: center;
     color: #aeff91;
     font-size: 24px;
 }
+
 .fieldset-image {
     display: block;
-    width: 0px;/* Set desired width */
-    height: auto; /* Maintain aspect ratio */
-    margin: 0 auto 15px; /* Center it with space below */
-    border-radius: 10px; /* Optional: rounded corners */
+    width: 0px;
+    height: auto;
+    margin: 0 auto 15px;
+    border-radius: 10px;
 }
 
 #customer-registration-form {
@@ -133,10 +114,3 @@ h2 {
 #customer-registration-table {
     width: 100%;
 }
-
-#full_name, #email, #phone, #location, #dob, #profile_pic, #butchering_time, #password {
-    width: 100%;
-    padding: 5px;
-    margin: 5px 0;
-}
-
