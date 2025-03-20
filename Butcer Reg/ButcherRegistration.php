@@ -2,10 +2,11 @@
 <html>
 <head>
     <title>Butcher Registration</title>
+    <link rel="stylesheet" type="text/css" href="../ButcherCSS/styles.css">
 </head>
 <body>
-    <h1>Welcome to the Butcher Registration </h1>
-    <form action="ButcherRegistration.php" method="post" enctype="multipart/form-data">
+    <h1><center>Welcome to the Butcher Registration </h1>
+    <form action="ButcherRegistration.php" method="post" >
         <fieldset>
             <legend>Butcher Information</legend>
             <table border="0" cellpadding="10" cellspacing="0">
@@ -15,7 +16,7 @@
                 </tr>
                 <tr>
                     <td><label for="butcher_password">Password:</label></td>
-                    <td><input type="password" id="butcher_password" name="butcher_password" required></td>
+                    <td><input type="password" id="butcher_password" name="butcher_password" required></td>   <!-- A-type,id,name, E-".." -->
                 </tr>
                 <tr>
                     <td><label for="butcher_email">Email Address:</label></td>
