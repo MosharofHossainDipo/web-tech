@@ -43,19 +43,16 @@ fieldset {
     min-height: 400px;
 }
 
-h2, label, legend {
-    font-weight: bold;
-}
-
 legend {
     font-size: 18px;
+    font-weight: bold;
     color: #ffffff;
     background: #30e171;
     padding: 5px 10px;
     border-radius: 5px;
 }
 
-input, select, textarea {
+input, select {
     background: #a4daddcc;
     border: 1px solid #999;
     border-radius: 5px;
@@ -63,6 +60,11 @@ input, select, textarea {
     font-size: 16px;
     width: 100%;
     margin: 5px 0;
+}
+
+label {
+    font-weight: bold;
+    color: #284e9b;
 }
 
 input[type="submit"], input[type="reset"] {
@@ -76,8 +78,13 @@ input[type="submit"], input[type="reset"] {
     cursor: pointer;
 }
 
-input[type="submit"] { background-color: #15181b; }
-input[type="reset"] { background-color: #e41b1b; }
+input[type="submit"] {
+    background-color: #15181b;
+}
+
+input[type="reset"] {
+    background-color: #a62727;
+}
 
 table {
     width: 100%;
@@ -95,7 +102,7 @@ h2 {
 
 .fieldset-image {
     display: block;
-    width: 0px;
+    width: 100%;
     height: auto;
     margin: 0 auto 15px;
     border-radius: 10px;
@@ -113,4 +120,10 @@ h2 {
 
 #customer-registration-table {
     width: 100%;
+}
+
+#full_name, #email, #phone, #location, #dob, #profile_pic, #butchering_time, #password {
+    width: 100%;
+    padding: 5px;
+    margin: 5px 0;
 }

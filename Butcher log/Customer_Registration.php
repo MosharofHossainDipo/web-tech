@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Registration</title>
-    <link rel="stylesheet" type="text/css" href="../css/CRStyles.css"> 
+    <link rel="stylesheet" type="text/css" href="../css/CRStyles.css">
 </head>
 <body>
     <div class="background-image"></div>
