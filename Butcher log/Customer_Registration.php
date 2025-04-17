@@ -18,20 +18,20 @@
             <table id="customer-registration-table">
                 <tr>
                     <td><label for="full_name">Full Name:</label></td>
-                    <td><input type="text" id="full_name" name="full_name" required></td>
+                    <td><input type="text" id="full_name" name="full_name" ></td>
                 </tr>
                 <tr>
                     <td><label for="email">Email:</label></td>
-                    <td><input type="email" id="email" name="email" required></td>
+                    <td><input type="email" id="email" name="email"></td>
                 </tr>
                 <tr>
                     <td><label for="phone">Phone Number:</label></td>
-                    <td><input type="tel" id="phone" name="phone" pattern="^\+8801[3-9]\d{8}$" placeholder="+8801XXXXXXXXX" required></td>
+                    <td><input type="tel" id="phone" name="phone" pattern="^\+8801[3-9]\d{8}$" placeholder="+8801XXXXXXXXX"></td>
                 </tr>
                 <tr>
                     <td><label for="location">Business Area:</label></td>
                     <td>
-                        <select id="location" name="Business_area" required>
+                        <select id="location" name="Business_area">
                             <option value="">-- Select Area --</option>
                             <option value="Dhaka">Dhaka</option>
                             <option value="Khulna">Khulna</option>
@@ -57,15 +57,17 @@
                 <tr>
                     <td><label>Service Needed:</label></td>
                     <td>
-                        <input type="radio" id="qurbani" name="service_type" value="qurbani" required>
-                        <label for="qurbani">Qurbani Butchering</label>
-                        <input type="radio" id="general" name="service_type" value="general">
-                        <label for="general">General Butchering</label>
-                    </td>
-                </tr>
+                   <input type="radio" id="qurbani" name="service_type" value="qurbani">
+                   <label for="qurbani">Qurbani Eid</label>
+                   <input type="radio" id="general" name="service_type" value="general">
+                   <label for="general">General</label>
+                   <div id="service-error-container"></div> <!-- Error container -->
+                   </td>
+               </tr>
+
                 <tr>
                     <td><label for="password">Password:</label></td>
-                    <td><input type="password" id="password" name="password" minlength="8" required></td>
+                    <td><input type="password" id="password" name="password" minlength="8" ></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="form-buttons">
@@ -76,5 +78,6 @@
             </table>
         </fieldset>
     </form>
+    <script src="../js/validation.js"></script>
 </body>
 </html>

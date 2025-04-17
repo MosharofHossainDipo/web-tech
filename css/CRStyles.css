@@ -25,15 +25,15 @@ form {
     z-index: 1;
     background: rgba(176, 224, 230, 0.9);
     width: 600px;
-    padding: 25px;
-    margin: 50px auto;
+    padding: 504px;
+    margin: 0px auto;
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
 }
 
 fieldset {
     position: relative;
-    background: url('customer.png') no-repeat center center, #ffffff;
+    background: url('logo.png') no-repeat center center, #ffffff;
     background-size: 300px 200px;
     padding: 20px;
     border: 10px solid #42a5f5;
@@ -47,7 +47,7 @@ legend {
     font-size: 18px;
     font-weight: bold;
     color: #ffffff;
-    background: #30e171;
+    background: #fd0000;
     padding: 5px 10px;
     border-radius: 5px;
 }
@@ -56,7 +56,7 @@ input, select {
     background: #a4daddcc;
     border: 1px solid #999;
     border-radius: 5px;
-    padding: 10px;
+    padding: 20px;
     font-size: 16px;
     width: 100%;
     margin: 5px 0;
@@ -64,7 +64,7 @@ input, select {
 
 label {
     font-weight: bold;
-    color: #284e9b;
+    color: hwb(188 36% 58%);
 }
 
 input[type="submit"], input[type="reset"] {
@@ -83,7 +83,7 @@ input[type="submit"] {
 }
 
 input[type="reset"] {
-    background-color: #a62727;
+    background-color: #fd0000;
 }
 
 table {
@@ -91,12 +91,12 @@ table {
 }
 
 td {
-    padding: 5px;
+    padding: 2px;
 }
 
 h2 {
     text-align: center;
-    color: #aeff91;
+    color: #cfb2c3e0;
     font-size: 24px;
 }
 
@@ -127,3 +127,13 @@ h2 {
     padding: 5px;
     margin: 5px 0;
 }
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 4px;
+}
+.error {
+    border: 1px solid red;
+}
+
+
