@@ -5,9 +5,9 @@ form {
     max-width: 600px;
     margin: 20px auto;
     padding: 20px;
-    border: 2px solid #854545;
+    border: 2px solid #9e2020;
     border-radius: 10px;
-    background-color: #38ad6f;
+    background-color: #b0ebe3;
 }
 
 /* 2. Styling table elements */
@@ -68,6 +68,6 @@ body {
 legend {
     font-weight: bold;
     padding: 5px 10px;
-    background-color: #884040;
+    background-color: #df9e61;
     border-radius: 5px;
 }
