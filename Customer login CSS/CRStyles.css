@@ -6,7 +6,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #e3f2fd;
+    background-color: #2f86c4;
     padding: 20px;
 }
 
@@ -16,7 +16,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('black.png') no-repeat center center/cover;
+    background: url('white.jpg') no-repeat center center/cover;
     z-index: -1;
 }
 
@@ -47,7 +47,7 @@ legend {
     font-size: 18px;
     font-weight: bold;
     color: #ffffff;
-    background: #fd0000;
+    background: #4f88d7;
     padding: 5px 10px;
     border-radius: 5px;
 }
@@ -96,7 +96,7 @@ td {
 
 h2 {
     text-align: center;
-    color: #cfb2c3e0;
+    color: #414fcde0;
     font-size: 24px;
 }
 
@@ -109,8 +109,8 @@ h2 {
 }
 
 #customer-registration-form {
-    background-color: #e0d8daca;
-    padding: 20px;
+    background-color: #497dcb;
+    padding: 10px;
 }
 
 #customer-info-fieldset {

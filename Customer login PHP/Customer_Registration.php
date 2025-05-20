@@ -1,18 +1,39 @@
+<?php
+$errors = [];
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
+    include '../Customer login Validation PHP/validation.php';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Customer Registration</title>
-    <link rel="stylesheet" type="text/css" href="../css/CRStyles.css">
+    <link rel="stylesheet" type="text/css" href="../Customer login CSS/CRStyles.css">
 </head>
 <body>
     <div class="background-image"></div>
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] === "POST") {
+        if (empty($errors)) {
+            echo "<h3>Registration Successful!</h3>";
+        } else {
+            echo "<h3>Validation Errors:</h3><ul>";
+            foreach ($errors as $error) {
+                echo "<li style='color:blue;'>$error</li>";
+            }
+            echo "</ul>";
+        }
+    }
+    ?>
+
+
 
     <h2>Customer Registration</h2>
-
-    <form id="customer-registration-form" action="Customer_Registration.php" method="POST">
-        <fieldset id="customer-info-fieldset">
+    <form id="customer-registration-form" action="" method="POST" enctype="multipart/form-data">
+    <fieldset id="customer-info-fieldset">
             <legend>Customer Information</legend>
             
             <table id="customer-registration-table">
@@ -26,7 +47,7 @@
                 </tr>
                 <tr>
                     <td><label for="phone">Phone Number:</label></td>
-                    <td><input type="tel" id="phone" name="phone" pattern="^\+8801[3-9]\d{8}$" placeholder="+8801XXXXXXXXX"></td>
+                    <td><input type="tel" id="phone" name="phone"></td>
                 </tr>
                 <tr>
                     <td><label for="location">Business Area:</label></td>
@@ -57,14 +78,13 @@
                 <tr>
                     <td><label>Service Needed:</label></td>
                     <td>
-                   <input type="radio" id="qurbani" name="service_type" value="qurbani">
-                   <label for="qurbani">Qurbani Eid</label>
-                   <input type="radio" id="general" name="service_type" value="general">
-                   <label for="general">General</label>
-                   <div id="service-error-container"></div> <!-- Error container -->
-                   </td>
-               </tr>
-
+                        <input type="radio" id="qurbani" name="service_type" value="qurbani">
+                        <label for="qurbani">Qurbani Eid</label>
+                        <input type="radio" id="general" name="service_type" value="general">
+                        <label for="general">General</label>
+                        <div id="service-error-container"></div>
+                    </td>
+                </tr>
                 <tr>
                     <td><label for="password">Password:</label></td>
                     <td><input type="password" id="password" name="password" minlength="8" ></td>
@@ -78,6 +98,7 @@
             </table>
         </fieldset>
     </form>
-    <script src="../js/validation.js"></script>
+
+    <script src="../Customer login PHP/validation.js"></script>
 </body>
 </html>
