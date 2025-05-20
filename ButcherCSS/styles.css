@@ -1,0 +1,73 @@
+/* CSS File for Butcher Registration Form */
+
+/* 1. Styling the form container */
+form {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #9e2020;
+    border-radius: 10px;
+    background-color: #b0ebe3;
+}
+
+/* 2. Styling table elements */
+table {
+    width: 100%;
+    border-collapse: separate;
+}
+
+td {
+    padding: 5px;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="tel"], input[type="number"], select {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+
+h1 {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #444;
+}
+
+/* 5. Styling submit button */
+input[type="submit"] {
+    display: inline-block;
+    background-color: #bb2c2c;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 6. Adding hover effect */
+input[type="submit"]:hover {
+    background-color: #0d6c17;
+}
+
+/* 7. Adding a z-index example */
+fieldset {
+    position: relative;
+    z-index: 1;
+}
+
+/* 8. Managing overflow */
+body {
+    overflow-x: hidden;
+}
+
+/* 9. Margin and Padding Example */
+legend {
+    font-weight: bold;
+    padding: 5px 10px;
+    background-color: #df9e61;
+    border-radius: 5px;
+}
