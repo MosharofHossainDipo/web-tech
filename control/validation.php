@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../model/db.php';
 $err_name = $err_password = $err_email = $err_nid = $err_booking = $err_experience = $err_services = $err_contact = "";
 $hasError = false;
@@ -83,17 +84,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $filename = ""; 
     }
 
-    if (!$hasError) {
+     if (!$hasError) {
         $db = new db();
         $conn = $db->createConObject();
 
-        $query = "INSERT INTO ButcherRegistration 
+        $query = "INSERT INTO butcherregistration 
         (butcher_name, butcher_password, butcher_email, business_area, national_id, butcher_booking, experience, available_time, services, emergency_contact, image_path) 
         VALUES 
         ('$butcher_name', '$butcher_password', '$butcher_email', '{$_POST["Business_area"]}', '$national_id', '$butcher_booking', '$experience', '$available_time', '$services', '$emergency_contact', '$filename')";
 
         if ($conn->query($query)) {
+            // Set session variables
+            $_SESSION["butcher_name"] = $butcher_name;
+            $_SESSION["butcher_email"] = $butcher_email;
+
+            // Set cookie
+            $cookie_name = "butcher_user";
+            $cookie_value = $butcher_name;
+            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); 
+
             echo "<h3 style='color:green;'>Successfully Registered</h3>";
+
+            // Show cookie message
+            if (!isset($_COOKIE[$cookie_name])) {
+                echo "<p style='color:red;'>Cookie is not set!</p>";
+            } else {
+                echo "<p style='color:blue;'>Welcome back, " . $_COOKIE[$cookie_name] . "!</p>";
+            }
         } else {
             echo "<h3 style='color:red;'>Error: " . $conn->error . "</h3>";
         }
