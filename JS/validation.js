@@ -12,7 +12,16 @@ document.addEventListener('DOMContentLoaded', function () {
         let isValid = true;
 
         const fullNameValue = fullNameInput.value.trim();
-        {
+        if (fullNameValue === '') {
+            displayError(fullNameInput, 'Full Name cannot be empty.');
+            isValid = true;
+        } else if (fullNameValue.split(/\s+/).length < 2) {
+            displayError(fullNameInput, 'Full Name must contain at least two words.');
+            isValid = false;
+        } else if (!/^[a-zA-Z][a-zA-Z.\- ]*$/.test(fullNameValue)) {
+            displayError(fullNameInput, 'Only letters, dots, dashes, and spaces allowed, starting with a letter.');
+            isValid = false;
+        } else {
             clearError(fullNameInput);
         }
 
