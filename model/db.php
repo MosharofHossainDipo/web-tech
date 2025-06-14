@@ -1,36 +1,58 @@
 <?php
+class db {
+    private $DBHostName;
+    private $DBUserName;
+    private $DBPassword;
+    private $DBName;
 
-class db{
-    public $DBHostName = "";
-    public $DBUserName = "";
-    public $DBPassword = "";
-    public $DBName = "";
-
-   function __construct() {
+    function __construct() {
         $this->DBHostName = "localhost";
         $this->DBUserName = "root";
         $this->DBPassword = "";
-        $this->DBName = "butcherregistration";
+        $this->DBName     = "butcherregistration";
     }
 
     function createConObject() {
-        return new mysqli($this->DBHostName, $this->DBUserName, $this->DBPassword, $this->DBName);
+        $conn = new mysqli($this->DBHostName, $this->DBUserName, $this->DBPassword, $this->DBName);
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+        return $conn;
     }
 
-    function insertButcher($conn, $table, $name, $password, $email, $area, $nid, $booking, $experience, $time, $services, $contact, $imagePath) {
-        $qrystring = "INSERT INTO $table (
-            butcher_name, butcher_password, butcher_email, business_area, national_id, butcher_booking, experience, available_time, 
-            services, emergency_contact, image_path
-        ) VALUES (
-            '$name', '$password', '$email', '$area', '$nid','$booking', $experience, '$time', '$services', '$contact', '$imagePath'
-        )";
+    // Prepared statement for insert to avoid SQL injection and maintain security
+    function insertButcherRegistration($conn, $table, $name, $password, $email, $area, $nid, $booking, $experience, $time, $services, $contact, $imagePath) {
+        $qrystring = "INSERT INTO $table 
+            (butcher_name, butcher_password, butcher_email, business_area, national_id, butcher_booking, experience, available_time, services, emergency_contact, image_path)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
-        $result = $conn->query($qrystring);
-
-        if ($result === false) {
+        $stmt = $conn->prepare($qrystring);
+        if (!$stmt) {
             return $conn->error;
-        } else {
+        }
+
+        $stmt->bind_param(
+            "sssssssssss",
+            $name,
+            $password,
+            $email,
+            $area,
+            $nid,
+            $booking,
+            $experience,
+            $time,
+            $services,
+            $contact,
+            $imagePath
+        );
+
+        if ($stmt->execute()) {
+            $stmt->close();
             return true;
+        } else {
+            $error = $stmt->error;
+            $stmt->close();
+            return $error;
         }
     }
 
@@ -39,3 +61,4 @@ class db{
     }
 }
 ?>
+

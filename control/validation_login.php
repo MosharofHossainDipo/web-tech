@@ -2,37 +2,62 @@
 session_start();
 include '../model/db.php';
 
-$email = $_POST["email"] ?? "";
+// Initialize variables
+$email = trim($_POST["email"] ?? "");
 $password = $_POST["password"] ?? "";
 
-if (empty($email) || empty($password)) {
-    echo "Email and Password are required.";
+// Input validation
+$errors = [];
+if (empty($email)) {
+    $errors[] = "Email is required.";
+}
+if (empty($password)) {
+    $errors[] = "Password is required.";
+}
+
+if (!empty($errors)) {
+    $_SESSION['errors'] = $errors;
+    header("Location: ../View/log_in.php");
     exit;
 }
 
 $db = new db();
 $conn = $db->createConObject();
 
-// Check if email and password match
-$query = "SELECT * FROM butcherregistration WHERE butcher_email='$email' AND butcher_password='$password'";
-$result = $conn->query($query);
+// Check if email exists
+$query = "SELECT * FROM butcherregistration WHERE butcher_email = ?";
+$stmt = $conn->prepare($query);
+$stmt->bind_param("s", $email);
+$stmt->execute();
+$result = $stmt->get_result();
 
-if ($result->num_rows == 1) {
-    $row = $result->fetch_assoc();
+if ($result->num_rows === 1) {
+    $user = $result->fetch_assoc();
     
-    // Set session
-    $_SESSION["butcher_name"] = $row["butcher_name"];
-    $_SESSION["butcher_email"] = $row["butcher_email"];
-
-    // Optional: Set a cookie
-    setcookie("butcher_user", $row["butcher_name"], time() + (86400 * 30), "/");
-
-    // Redirect to dashboard
-    header("Location: Dashboard.php");
-    exit;
+    // Verify password (assuming plain text for now - NOT RECOMMENDED)
+    if ($password === $user['butcher_password']) {
+        // Login successful
+        $_SESSION["butcher_id"] = $user['id']; // Assuming you have an id column
+        $_SESSION["butcher_name"] = $user["butcher_name"];
+        $_SESSION["butcher_email"] = $user["butcher_email"];
+        $_SESSION['login_success'] = true;
+        
+        setcookie("butcher_user", $user["butcher_name"], time() + (86400 * 30), "/");
+        
+        header("Location: ../View/Dashboard.php");
+        exit;
+    } else {
+        $errors[] = "Invalid password.";
+    }
 } else {
-    echo "Invalid email or password.";
+    $errors[] = "Email not found.";
 }
 
+// If we get here, login failed
+$_SESSION['errors'] = $errors;
+header("Location: ../View/log_in.php");
+exit;
+
+$stmt->close();
 $db->closeCon($conn);
 ?>

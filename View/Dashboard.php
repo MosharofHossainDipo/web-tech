@@ -1,4 +1,4 @@
-<?php include 'header.php'; ?>
+<?php include '../View/header.php'; ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,14 +15,19 @@
     </style>
 </head>
 <body>
-
+        
+ 
 <div class="hero">
     <h1>Find the Best Butchers<br>in Your Area</h1>
     <p>Discover top-quality meat and exceptional service at local butcher shops near you.</p>
-    <input type="text" placeholder="Enter your city or zip code">
-    <button>Search</button>
+    <div class="search-box" style="text-align: center; margin: 20px 0;">
+        <form method="GET" action="../View/search.php" style="display: inline-block;">
+            <input type="text" name="location" placeholder="Search butchers by location">
+            <button type="submit">Search</button>
+        </form>
+    </div>
 </div>
-
+ 
 <div class="section">
     <h2>Why Choose Us</h2>
     <div class="features">
@@ -31,22 +36,22 @@
         <div><strong>👍 Trusted Reviews</strong><br> Choose with confidence.</div>
     </div>
 </div>
-
+ 
 <div class="section">
     <h2>Featured Butchers</h2>
     <div class="butchers">
-        <div class="card"><img src="meat1.jpg" width="100%"><b>Johnson’s Butcher Shop</b><br>Springfield<br>⭐⭐⭐⭐⭐</div>
-        <div class="card"><img src="meat2.jpg" width="100%"><b>Prime Cuts</b><br>Riverside<br>⭐⭐⭐⭐⭐</div>
-        <div class="card"><img src="meat3.jpg" width="100%"><b>Meat Mart</b><br>Lakside<br>⭐⭐⭐⭐⭐</div>
-        <div class="card"><img src="meat4.jpg" width="100%"><b>The Chop House</b><br>Greenville<br>⭐⭐⭐⭐⭐</div>
+        <div class="card"><img src="meat1.png" width="100%"><b>Johnson’s Butcher Shop</b><br>Springfield<br>⭐⭐⭐⭐⭐</div>
+        <div class="card"><img src="meat2.png" width="100%"><b>Prime Cuts</b><br>Riverside<br>⭐⭐⭐⭐⭐</div>
+        <div class="card"><img src="meat3.png" width="100%"><b>Meat Mart</b><br>Lakside<br>⭐⭐⭐⭐⭐</div>
+        <div class="card"><img src="meat4.png" width="100%"><b>The Chop House</b><br>Greenville<br>⭐⭐⭐⭐⭐</div>
     </div>
 </div>
-
+ 
 <div class="section testimonial">
     <h2>What Our Users Are Saying</h2>
     <p><img src="avatar.png" width="50" style="border-radius:50%"><br>
     I found the perfect butcher for my family thanks to Butcher Finder! Great quality and friendly service.<br><b>Sarah W.</b></p>
 </div>
-
+ 
 </body>
 </html>

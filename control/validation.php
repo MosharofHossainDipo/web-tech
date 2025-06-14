@@ -1,123 +1,77 @@
 <?php
-session_start();
+// filepath: ../control/validation.php
+
 include '../model/db.php';
+
 $err_name = $err_password = $err_email = $err_nid = $err_booking = $err_experience = $err_services = $err_contact = "";
-$hasError = false;
-$filename = "";
+
+$butcher_name = $butcher_password = $butcher_email = $Business_area = $national_id = $butcher_booking = $experience = $available_time = $emergency_contact = "";
+$services = [];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    if (empty($_POST["butcher_name"])) {
-        $err_name = "Invalid Username";
-        $hasError = true;
-    } else {
-        $butcher_name = $_POST["butcher_name"];
+    function clean_input($data) {
+        return htmlspecialchars(stripslashes(trim($data)));
     }
 
-    if (empty($_POST["butcher_password"])) {
-        $err_password = "Password is required.";
-        $hasError = true;
-    } elseif (strlen($_POST["butcher_password"]) < 6) {
-        $err_password = "Password must be at least 6 characters.";
-        $hasError = true;
-    } else {
-        $butcher_password = $_POST["butcher_password"];
-    }
-
-    if (empty($_POST["butcher_email"])) {
-        $err_email = "Email is required.";
-        $hasError = true;
-    } elseif (!filter_var($_POST["butcher_email"], FILTER_VALIDATE_EMAIL)) {
-        $err_email = "Invalid email format.";
-        $hasError = true;
-    } else {
-        $butcher_email = $_POST["butcher_email"];
-    }
-
-    if (empty($_POST["national_id"])) {
-        $err_nid = "NID is required.";
-        $hasError = true;
-    } elseif (!preg_match("/^[0-9]{10,17}$/", $_POST["national_id"])) {
-        $err_nid = "Invalid NID (10–17 digits only).";
-        $hasError = true;
-    } else {
-        $national_id = $_POST["national_id"];
-    }
-
-    if (empty($_POST["butcher_booking"])) {
-        $err_booking = "Please select a booking type.";
-        $hasError = true;
-    } else {
-        $butcher_booking = $_POST["butcher_booking"];
-    }
-
-    if (!isset($_POST["experience"]) || $_POST["experience"] < 0) {
-        $err_experience = "Invalid experience.";
-        $hasError = true;
-    } else {
-        $experience = $_POST["experience"];
-    }
-
+    $butcher_name = clean_input($_POST["butcher_name"] ?? "");
+    $butcher_password = $_POST["butcher_password"] ?? "";
+    $butcher_email = strtolower(clean_input($_POST["butcher_email"] ?? "")); // Normalize email to lowercase
+    $Business_area = $_POST["Business_area"] ?? "";
+    $national_id = clean_input($_POST["national_id"] ?? "");
+    $butcher_booking = $_POST["butcher_booking"] ?? "";
+    $experience = $_POST["experience"] ?? "";
     $available_time = $_POST["available_time"] ?? "";
+    $services = $_POST["services"] ?? [];
+    $emergency_contact = clean_input($_POST["emergency_contact"] ?? "");
 
-    if (empty($_POST["services"])) {
-        $err_services = "Select at least one service.";
-        $hasError = true;
-    } else {
-        $services = implode(", ", $_POST["services"]);
-    }
+    // Validation
+    if (empty($butcher_name)) $err_name = "Name is required";
+    if (empty($butcher_password)) $err_password = "Password is required";
+    if (empty($butcher_email) || !filter_var($butcher_email, FILTER_VALIDATE_EMAIL)) $err_email = "Valid email is required";
+    if (empty($national_id)) $err_nid = "NID is required";
+    if (empty($butcher_booking)) $err_booking = "Select a booking type";
+    if (empty($experience) || !is_numeric($experience)) $err_experience = "Enter valid years of experience";
+    if (empty($services)) $err_services = "Select at least one service";
+    if (empty($emergency_contact)) $err_contact = "Contact number required";
 
-    if (empty($_POST["emergency_contact"])) {
-        $err_contact = "Contact is required.";
-        $hasError = true;
-    } elseif (!preg_match("/^[0-9]{10,15}$/", $_POST["emergency_contact"])) {
-        $err_contact = "Invalid contact number.";
-        $hasError = true;
-    } else {
-        $emergency_contact = $_POST["emergency_contact"];
-    }
+    if (
+        empty($err_name) && empty($err_password) && empty($err_email) &&
+        empty($err_nid) && empty($err_booking) && empty($err_experience) &&
+        empty($err_services) && empty($err_contact)
+    ) {
+        //$hashed_password = password_hash($butcher_password, PASSWORD_DEFAULT);
 
-    if (!empty($_FILES["myfile"]["name"])) {
-        $filename = "../uploads/" . time() . "_" . basename($_FILES["myfile"]["name"]);
-        move_uploaded_file($_FILES["myfile"]["tmp_name"], $filename);
-    } else {
-        $filename = ""; 
-    }
-
-     if (!$hasError) {
         $db = new db();
         $conn = $db->createConObject();
 
-        $query = "INSERT INTO butcherregistration 
-        (butcher_name, butcher_password, butcher_email, business_area, national_id, butcher_booking, experience, available_time, services, emergency_contact, image_path) 
-        VALUES 
-        ('$butcher_name', '$butcher_password', '$butcher_email', '{$_POST["Business_area"]}', '$national_id', '$butcher_booking', '$experience', '$available_time', '$services', '$emergency_contact', '$filename')";
+        // Check for duplicate email
+        $check_stmt = $conn->prepare("SELECT butcher_email FROM butcherregistration WHERE butcher_email = ?");
+        $check_stmt->bind_param("s", $butcher_email);
+        $check_stmt->execute();
+        $check_stmt->store_result();
 
-        if ($conn->query($query)) {
-            // Set session variables
-            $_SESSION["butcher_name"] = $butcher_name;
-            $_SESSION["butcher_email"] = $butcher_email;
-
-            // Set cookie
-            $cookie_name = "butcher_user";
-            $cookie_value = $butcher_name;
-            setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); 
-
-            echo "<h3 style='color:green;'>Successfully Registered</h3>";
-
-            // Show cookie message
-            if (!isset($_COOKIE[$cookie_name])) {
-                echo "<p style='color:red;'>Cookie is not set!</p>";
-            } else {
-                echo "<p style='color:blue;'>Welcome back, " . $_COOKIE[$cookie_name] . "!</p>";
-            }
+        if ($check_stmt->num_rows > 0) {
+            $err_email = "Email already registered.";
+            $check_stmt->close();
+            $db->closeCon($conn);
         } else {
-            echo "<h3 style='color:red;'>Error: " . $conn->error . "</h3>";
-        }
+            $check_stmt->close();
 
-        $db->closeCon($conn);
+            // Use the new insert method
+            $result = $db->insertButcherRegistration($conn, "butcherregistration", $butcher_name, $butcher_password, $butcher_email, $Business_area, $national_id, $butcher_booking, $experience, $available_time, implode(", ", $services), $emergency_contact, ""); // Assuming no image path for now
+
+            if ($result === true) {
+                session_start();
+                $_SESSION['registration_success'] = true;
+                $db->closeCon($conn);
+                header("Location: ../View/log_in.php");
+                exit();
+            } else {
+                $err_name = "Database error: " . $result;
+                $db->closeCon($conn);
+            }
+        }
     }
 }
- 
-
 ?>
