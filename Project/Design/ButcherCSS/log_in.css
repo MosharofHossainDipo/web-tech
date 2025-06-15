@@ -1,0 +1,90 @@
+/* login.css */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.login-container h4 {
+    text-align: center;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.login-container h1 {
+    text-align: center;
+    color: #d33;
+    margin-top: 0;
+    margin-bottom: 30px;
+}
+
+.error-messages {
+    color: #d33;
+    margin-bottom: 15px;
+}
+
+.error-message {
+    margin: 5px 0;
+}
+
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background: #d33;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.login-button:hover {
+    background: #b22;
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+}
+
+.signup-link a {
+    color: #d33;
+    text-decoration: none;
+}
+
+.signup-link a:hover {
+    text-decoration: underline;
+}
+
+.success-message {
+    color: #28a745;
+    text-align: center;
+    margin-bottom: 15px;
+}

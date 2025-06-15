@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const fields = {
         full_name: {
-            element: document.getElementById('full_name'),
+            element: document.getElementById('name'),
             validate: value => {
                 if (!value) return 'Full Name cannot be empty.';
                 if (value.trim().split(/\s+/).length < 2) return 'Full Name must contain at least two words.';

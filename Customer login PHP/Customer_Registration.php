@@ -4,7 +4,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     include '../Customer login Validation PHP/validation.php';
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,9 +27,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
     ?>
-
-
-
     <h2>Customer Registration</h2>
     <form id="customer-registration-form" action="" method="POST" enctype="multipart/form-data">
     <fieldset id="customer-info-fieldset">
@@ -38,8 +34,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             
             <table id="customer-registration-table">
                 <tr>
-                    <td><label for="full_name">Full Name:</label></td>
-                    <td><input type="text" id="full_name" name="full_name" ></td>
+                    <td><label for="name">Name:</label></td>
+                    <td><input type="text" id="name" name="name" ></td>
                 </tr>
                 <tr>
                     <td><label for="email">Email:</label></td>
@@ -79,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                     <td><label>Service Needed:</label></td>
                     <td>
                         <input type="radio" id="qurbani" name="service_type" value="qurbani">
-                        <label for="qurbani">Qurbani Eid</label>
+                        <label for="qurbani">Eid</label>
                         <input type="radio" id="general" name="service_type" value="general">
                         <label for="general">General</label>
                         <div id="service-error-container"></div>
@@ -101,4 +97,4 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     <script src="../Customer login PHP/validation.js"></script>
 </body>
-</html>
+</html> 
