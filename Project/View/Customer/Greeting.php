@@ -13,7 +13,11 @@
       Butcher Shop
     </div>
     <form method="POST" action="Customer_login.php">
-      <button type="submit" class="button">Let's Explore</button>
+      <button type="submit" class="button">Login as Customer</button>
+    </form>
+    <form method="POST" action="../Butcher/log_in.php">
+      <button type="submit" class="button">Login as Butcher</button>
+    </form>
     </form>
   </div>
 </body>
