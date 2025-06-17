@@ -44,7 +44,7 @@ if ($result->num_rows === 1) {
         
         setcookie("butcher_user", $user["butcher_name"], time() + (86400 * 30), "/");
         
-        header("Location: ../../View/Butcher/Dashboard.php");
+        header("Location: ../../Dashboard/Customer_Dashboard.php");
         exit;
     } else {
         $errors[] = "Invalid password.";
